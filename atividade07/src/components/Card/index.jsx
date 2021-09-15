@@ -7,7 +7,7 @@ const Card = ({data, setData, accounts})=>{
         if(!data){
             history.push('/')
         }
-    },[])
+    })
     const {name, fullName,email,password, birthday,state, city} = data
     return (
         <div className='card'>
