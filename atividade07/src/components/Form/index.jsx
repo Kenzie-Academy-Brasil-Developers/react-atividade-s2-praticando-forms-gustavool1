@@ -70,7 +70,7 @@ const Form = ({ data,setData }) =>{
                 <input type='text' placeholder='Estado' {...register("state")}/>
             {errors.city && <p className='form-paragraph'>{errors.city.message}</p>}
                 <input type='text' placeholder='Cidade'{...register('city')}/>
-            {data.length !==0 && <p className='form-conta'>Ja possui uma conta ? <Link to='/logar'>Acesse já</Link></p>}
+            <p className='form-conta'>Ja possui uma conta ? <Link to='/logar'>Acesse já</Link></p>
            <button type='submit'>Enviar</button>
        </form>
 

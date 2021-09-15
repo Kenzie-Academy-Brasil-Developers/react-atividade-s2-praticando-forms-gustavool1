@@ -12,7 +12,8 @@
 .card h1{
     font-size: 20px;
 }
-.card a{
+
+.card a {
     text-decoration: none;
     margin-top: 10px;
     background-color: none;
@@ -25,8 +26,11 @@
     box-shadow: 5px 5px #98a3b994;
     cursor: pointer;
     transition: 1s;
-    width: 30%;
+    width: 100px;
+    margin: 30px;
+    padding: 20px 20px;
  }
+ 
 .card a:hover{
      box-shadow: 1px 1px #555b6894;
  }

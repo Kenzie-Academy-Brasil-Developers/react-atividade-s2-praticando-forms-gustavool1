@@ -14,7 +14,7 @@ function App() {
               <Form data={data}setData={setData}/>
           </Route>
           <Route exact path='/logado/'>
-              <Card data={data}/>
+              <Card data={data} setData={setData}/>
           </Route>
           <Route exact path='/logar'> 
               <Loggin data={data}/>

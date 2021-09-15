@@ -1,6 +1,6 @@
 import './style.css'
 import { Link } from 'react-router-dom'
-const Card = ({data:{name, fullName,email,password, birthday,state, city}})=>{
+const Card = ({data:{name, fullName,email,password, birthday,state, city}, setData})=>{
     return (
         <div className='card'>
             <h1>Nome completo: {fullName}</h1>
@@ -10,7 +10,7 @@ const Card = ({data:{name, fullName,email,password, birthday,state, city}})=>{
             <p>Aniversário: <strong>{birthday}</strong></p>
             <p>Estado: <strong>{state}</strong></p>
             <p>Cidade: <strong>{city}</strong></p>
-            <Link to='/'>Voltar</Link>
+            <Link to='/'>Sair</Link>    
         </div>
     )
 }
