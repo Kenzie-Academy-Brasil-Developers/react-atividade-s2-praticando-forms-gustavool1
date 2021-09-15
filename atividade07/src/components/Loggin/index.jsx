@@ -20,19 +20,16 @@ import './style.css'
          resolver: yupResolver(formScheme)
      })
      const handleClick = (dataForm) =>{
-         console.log(dataForm)
-         console.log(errors)
          if(email === dataForm.email && password === dataForm.password){
             history.push("/logado/")
          }else{
              setShowMsgError(true)
          }
      }
-     console.log(errors)
      return (
         <>
             <div className='goback'>
-                <Link to='/'><i class="fas fa-arrow-left"></i></Link>
+                <Link to='/'><i className="fas fa-arrow-left"></i></Link>
             </div>
             <form className='cadastro' onSubmit={handleSubmit(handleClick)}>
                 <h1>Logar</h1>
@@ -42,7 +39,6 @@ import './style.css'
                 {errors.password && <p>{errors.password.message}</p>}
                 <button type='submit'>Enviar</button>
             </form>
-            
             {showMsgError &&
                 <div className='msg-logged'>
                     <p>Senha ou Email não correspondem.</p>

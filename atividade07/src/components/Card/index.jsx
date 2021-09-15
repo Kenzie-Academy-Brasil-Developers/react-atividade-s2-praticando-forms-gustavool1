@@ -1,6 +1,14 @@
 import './style.css'
-import { Link } from 'react-router-dom'
-const Card = ({data:{name, fullName,email,password, birthday,state, city}, setData})=>{
+import { Link, useHistory} from 'react-router-dom'
+import { useEffect } from 'react'
+const Card = ({data, setData, accounts})=>{
+    const history = useHistory();
+    useEffect(()=>{
+        if(!data){
+            history.push('/')
+        }
+    },[])
+    const {name, fullName,email,password, birthday,state, city} = data
     return (
         <div className='card'>
             <h1>Nome completo: {fullName}</h1>

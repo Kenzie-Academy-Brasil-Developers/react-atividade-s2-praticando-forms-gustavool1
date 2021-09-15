@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useHistory, Link } from 'react-router-dom'
-const Form = ({ data,setData }) =>{
+const Form = ({ data,setData}) =>{
     const history = useHistory()
     const formScheme = yup.object().shape({
         name: 

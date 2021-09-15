@@ -11,7 +11,7 @@ function App() {
       <header className="App-header">
         <Switch>
           <Route exact path='/'>
-              <Form data={data}setData={setData}/>
+              <Form data={data}setData={setData} />
           </Route>
           <Route exact path='/logado/'>
               <Card data={data} setData={setData}/>
