@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Formulario = styled.form`
     color:white;
-    width: 75%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +14,13 @@ p{
 i{
     color:white;
     
+}
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
 }
 
 .form-conta a{
@@ -31,18 +38,11 @@ i{
     font-size: 20px;
     margin: 0px;
 }
-.form-check p{
-    width: 80%;
-    color: darkgrey;
-}
-.form-check input{
-    cursor: pointer;
-    width: 10%;
-}
+
 input{
         
     height: 30px;
-    width: 100%;
+    width: inherit;
     border-radius: 5px;
     background-color: #282c34;
     color: white;

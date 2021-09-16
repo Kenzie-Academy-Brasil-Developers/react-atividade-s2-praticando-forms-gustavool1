@@ -10,6 +10,8 @@ const CardCss = styled.div`
     border-radius: 5px;
     margin: 30px;
     max-height: 600px;
+    width:50%;
+    
 h1{
     font-size: 20px;
 }
@@ -29,7 +31,7 @@ a {
     transition: 1s;
     width: 100px;
     margin: 30px;
-    padding: 20px 20px;
+    
  }
  
 a:hover{
@@ -37,6 +39,7 @@ a:hover{
  }
 
  @media screen and (min-width:768px){
+     width: 30%;
     h1{
         font-size: 25px;
     }
