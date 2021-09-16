@@ -1,9 +1,10 @@
-import './style.css'
+
+import Formulario from './style'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useHistory, Link } from 'react-router-dom'
-const Form = ({ data,setData}) =>{
+import { useHistory } from 'react-router-dom'
+const Form = ({ data,setData, scheme, setScheme}) =>{
     const history = useHistory()
     const formScheme = yup.object().shape({
         name: 
@@ -11,26 +12,27 @@ const Form = ({ data,setData}) =>{
             .required("Nome obrigatório"),
         fullName: 
             yup.string()
-            .required('Nome completo obrigatório'),
+            .required('Nome completo obrigatório')
+            .max(18,'Nome completo pode ter até 18 digitos'),
         email: 
             yup.string()
             .required('Email obrigatório')
             .email("Email inválido"),
         confirmEmail: 
             yup.string()
-            .required('Confirmação de email obrigatória')
-            .email('Confirmação de email inválida'),
+            .oneOf([yup.ref('email')], 'Os emails não iguais').required("Confirmação de email obrigatório"),
         password: 
             yup.string()
             .required('Senha obrigatória')
             .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])/, 'Sua senha não é forte'),
         confirmPassword: 
             yup.string()
-            .required("Confirmação de senha obrigatória")
-            .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])/, 'Sua senha não é forte'),
-        birthday: 
-            yup.string()
-            .required("Data de nascimento obrigatória"),
+            .oneOf([yup.ref('password')], 'As senhas não são iguais'),
+        age: 
+            yup.number()
+            .required("Data de nascimento obrigatória")
+            .min(1, 'Novo demais :p')
+            .max(50, 'Ta velho demais'),
         state:
             yup.string()
             .required("Insira seu estado"),
@@ -43,36 +45,34 @@ const Form = ({ data,setData}) =>{
         resolver: yupResolver(formScheme)
     })
     const handleClickSubmit = (formData)=>{
-        if(formData.password === formData.confirmPassword && formData.fullName.length <=18){
-            setData(formData)
-            history.push("/logado/")
-        }
-        
+        setData(formData)
+        setScheme(formScheme)
+        history.push("/logado/")
     }
    return(
-       <form className='cadastro'onSubmit={handleSubmit(handleClickSubmit)}>
+       <Formulario className='cadastro'onSubmit={handleSubmit(handleClickSubmit)}>
            <h1>Cadastra-se</h1>
            {errors.name && <p className='form-paragraph'>{errors.name.message}</p>}
                 <input placeholder='Nome *' {...register('name')}/>
-           {errors.fullName && <p className='form-paragraph'>{errors.fullName.message}</p>}
-                <input type='text' placeholder='Nome completo *' {...register("fullName")}/>
+            {errors.fullName && <p className='form-paragraph'>{errors.fullName.message}</p>}
+                <input type='text'  placeholder='Nome completo *' {...register("fullName")}/>
            {errors.email && <p className='form-paragraph'>{errors.email.message}</p>}
                 <input type='text' placeholder='Email *' {...register('email')}/>
-           {errors.confirmEmail && <p className='form-paragraph'>{ errors.confirmEmail.message}</p>}
+            {errors.confirmEmail && <p className='form-paragraph'>{ errors.confirmEmail.message}</p>}
                 <input type='text' placeholder='Confirme seu Email *'{...register('confirmEmail')}/>
            {errors.password && <p className='form-paragraph'>{errors.password.message}</p>}
                 <input  type='password' placeholder='Senha *' {...register('password')}/>
-           {errors.confirmPassword && <p className='form-paragraph'>{errors.confirmPassword.message}</p>}
+            {errors.confirmPassword && <p className='form-paragraph'>{errors.confirmPassword.message}</p>}
                 <input  type='password' placeholder='Confirme sua senha *'{...register('confirmPassword')}/>
-           {errors.birthday && <p className='form-paragraph'>{errors.birthday.message}</p>}
-                <input type='date' {...register('birthday')}/>
+           {errors.age && <p className='form-paragraph'>{errors.age.message}</p>}
+                <input type='text'placeholder='Idade *' {...register('age')}/>
             {errors.state  &&  <p className='form-paragraph'>{errors.state.message}</p>} 
-                <input type='text' placeholder='Estado' {...register("state")}/>
+                <input type='text' placeholder='Estado * ' {...register("state")}/>
             {errors.city && <p className='form-paragraph'>{errors.city.message}</p>}
-                <input type='text' placeholder='Cidade'{...register('city')}/>
-            <p className='form-conta'>Ja possui uma conta ? <Link to='/logar'>Acesse já</Link></p>
+                <input type='text' placeholder='Cidade * '{...register('city')}/>
+            {/* <p className='form-conta'>Ja possui uma conta ? <Link to='/logar'>Acesse já</Link></p> */}
            <button type='submit'>Enviar</button>
-       </form>
+       </Formulario>
 
    )
 }
